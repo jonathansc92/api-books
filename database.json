@@ -1,0 +1,11 @@
+{
+    "dev": {
+      "host": "localhost",
+      "user": "nofaro",
+      "password" : "nofaro",
+      "database": "nofaro",
+      "driver": "mysql",
+      "multipleStatements": true,
+      "port": "3307"
+    }
+  }
