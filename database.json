@@ -1,11 +1,29 @@
 {
     "dev": {
       "host": "localhost",
-      "user": "nofaro",
-      "password" : "nofaro",
-      "database": "nofaro",
+      "user": { "ENV" : "DB_USER" },
+      "password" : { "ENV" : "DB_PASS" },
+      "database": { "ENV" : "DB_DATABASE" },
       "driver": "mysql",
       "multipleStatements": true,
-      "port": "3307"
+      "port": "3306"
+    },
+    "prod": {
+      "host": "localhost",
+      "user": { "ENV" : "DB_USER" },
+      "password" : { "ENV" : "DB_PASS" },
+      "database": { "ENV" : "DB_DATABASE" },
+      "driver": "mysql",
+      "multipleStatements": true,
+      "port": "3306"
+    },
+    "test": {
+      "host": "localhost",
+      "user": { "ENV" : "DB_USER" },
+      "password" : { "ENV" : "DB_PASS" },
+      "database": { "ENV" : "DB_DATABASE" },
+      "driver": "mysql",
+      "multipleStatements": true,
+      "port": "3306"
     }
   }
