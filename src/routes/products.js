@@ -2,34 +2,12 @@ const express = require('express');
 
 const productsController = require('../controllers/products');
 
-const router = express.Router();
+const api = express.Router();
 
-router.get('/', (req, res, next) => {
-   res.json(productsController.getAll);
-});;
+api.get('/', productsController.getAll);
+api.post('/:id', productsController.store);
+api.get('/:id', productsController.show);
+api.put('/:id', productsController.update);
+api.delete('/:id', productsController.delete);
 
-router.post('/', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usando get'
-    });
-});
-
-router.get('/:id', (req, res, next) => {
-    res.status(200).send({
-        mensagem: 'Usando get'
-    });
-});
-
-router.patch('/:id', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usando get'
-    });
-});
-
-router.patch('/:id', (req, res, next) => {
-    res.status(201).send({
-        mensagem: 'Usando get'
-    });
-});
-
-module.exports = router;
+module.exports = api;

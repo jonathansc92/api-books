@@ -1,17 +1,13 @@
-const db = require('../../utils/database');
+const Bookshelf = require('../../config/bookshelf');
 
-module.exports = class Products {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    static fetchAll() {
-        return db.query('SELECT * FROM products', (err,rows) => {
-            if(err) throw err;
-          
-            console.log('Data received from Db:');
-            console.log(rows);
-          })
-    }
-};
+const Product = Bookshelf.Model.extend({
+    tableName: 'products',
+    // hasTimestamps: true
+    // favorites: function() {
+    //     return this.hasMany('Favorite');
+    // },
+    // profile: function() {
+    //     return this.hasOne('Subscriber');
+    // }
+})
+module.exports = Bookshelf.model('Product', Product);
