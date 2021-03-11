@@ -48,12 +48,15 @@ module.exports = {
             })
         },
     
-        store : function(req, res){
-            console.log(req)
-            Product.forge({
-                name : req.body.name
-            })
-            .save()
+       store : function(req, res){
+            console.log(req.body.id)
+            Product.forge()
+            .save(
+                {
+                    id : req.body.id,
+                    name : req.body.name
+                }
+            )
             .then(function(product){
                 res.json({
                     error : false,
@@ -78,7 +81,8 @@ module.exports = {
             })
             .then(function(product){
                 product.save({
-                    name : req.body.name || category.get('name')
+                    id : req.query.id || product.get('id'),
+                    name : req.query.name || product.get('name')
                 })
                 .then(function(){
                     res.json({
