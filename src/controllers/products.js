@@ -1,6 +1,8 @@
 const Product = require('../models/products');
 const Products = require('../collections/products');
 
+const dateNow = new Date();
+
 exports.get = async function (req, res, next) {
      await Products.forge()
      .fetch()
@@ -48,17 +50,24 @@ exports.show = async function (req, res, next) {
 }
 
 exports.store = async function (req, res, next) {
+    console.log(req.body)
      await Product.forge()
     .save(
         {
-            id : req.body.id,
-            name : req.body.name
+            name : req.body.name,
+            active : req.body.active,
+            site : req.body.site,
+            catalog : req.body.catalog,
+            price: req.body.price,
+            stock: req.body.stock,
+            created_at : dateNow,
+            updated_at : dateNow
         }
     )
     .then(function(product){
         res.json({
             error : false,
-            data : { id : product.get('id') }
+            data : { message: 'Salvo com sucesso' }
         })
     })
     .catch(function(err){
@@ -79,8 +88,13 @@ exports.update = async function (req, res, next) {
     })
     .then(function(product){
         product.save({
-            id : req.query.id || product.get('id'),
-            name : req.query.name || product.get('name')
+            name : req.body.name || product.get('name'),
+            active : req.body.active || product.get('active'),
+            site : req.body.site || product.get('site'),
+            catalog : req.body.catalog || product.get('catalog'),
+            price: req.body.price || product.get('price'),
+            stock: req.body.stock || product.get('stock'),
+            updated_at : dateNow
         })
         .then(function(){
             res.json({

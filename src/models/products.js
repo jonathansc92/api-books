@@ -2,7 +2,9 @@ const Bookshelf = require('../../config/bookshelf');
 
 const Product = Bookshelf.Model.extend({
     tableName: 'products',
-    // hasTimestamps: true
+    fillable: ['name', 'active', 'site', 'catalog'],
+    guarded: ['id'],
+    hasTimestamps: true
     // favorites: function() {
     //     return this.hasMany('Favorite');
     // },
