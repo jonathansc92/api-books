@@ -15,21 +15,17 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('products', {
+  db.createTable('booklist', {
     id: { type: 'int', primaryKey: true, autoIncrement: true, notNull: true },
     name: { type: 'string', notNull: true },
-    active: { type: 'boolean', defaultValue: 0, notNull: false },
-    site: { type: 'boolean', defaultValue: 0, notNull: false },
-    catalog: { type: 'boolean', defaultValue: 0, notNull: false },
-    price: { type: 'float', defaultValue: 0.00, notNull: true},
-    stock: { type: 'int', defaultValue: 0, notNull: false},
+    volume_id: { type: 'string', notNull: true, unique: true, length: 20 },
     created_at: { type: 'timestamp', notNull: true },
     updated_at: { type: 'timestamp', notNull: true }
   }, callback);
 };
 
-exports.down = function(db, callback) {
-  db.dropTable('products', callback);
+exports.down = function(db) {
+  db.dropTable('booklist', callback);
 };
 
 exports._meta = {

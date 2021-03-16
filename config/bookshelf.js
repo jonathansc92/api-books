@@ -9,5 +9,10 @@ const knex = require('knex')({
     database: process.env.DB_DATABASE,
     charset  : 'utf8'
   }
-})
-module.exports = require('bookshelf')(knex)
+});
+
+let bookshelf = require('bookshelf')(knex);
+
+// bookshelf.plugin();
+
+module.exports = bookshelf
