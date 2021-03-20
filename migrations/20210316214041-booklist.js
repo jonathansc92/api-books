@@ -18,6 +18,8 @@ exports.up = function(db, callback) {
   db.createTable('booklist', {
     id: { type: 'int', primaryKey: true, autoIncrement: true, notNull: true },
     name: { type: 'string', notNull: true },
+    author: { type: 'string', notNull: false },
+    image: { type: 'string', notNull: false },
     volume_id: { type: 'string', notNull: true, unique: true, length: 20 },
     created_at: { type: 'timestamp', notNull: true },
     updated_at: { type: 'timestamp', notNull: true }

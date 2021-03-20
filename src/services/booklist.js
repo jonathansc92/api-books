@@ -26,6 +26,8 @@ exports.addToFavorite = function (req, res, next) {
     .save(
         {
             name : req.body.name,
+            image : req.body.image,
+            author : req.body.author,
             volume_id : req.body.volume_id,
             created_at : dateNow,
             updated_at : dateNow
@@ -34,7 +36,7 @@ exports.addToFavorite = function (req, res, next) {
     .then(function(booklist){
         res.json({
             error : false,
-            data : { message: 'Adicionado a sua lista de favoritos' }
+            data : { message: 'Book is keep in your favorite list' }
         })
     })
     .catch(function(err){
@@ -42,7 +44,7 @@ exports.addToFavorite = function (req, res, next) {
             res.status(500)
             .json({
                 error : true,
-                data : { message : "O volume já está em seus favoritos" }
+                data : { message : "The book is already in your list. Choose another book." }
             })
         }
         else {
@@ -63,7 +65,7 @@ exports.removeFavorite = function (req, res, next) {
         .then(function(){
             res.json({
                 error : false,
-                data : { message : 'Livro removido da lista de favoritos'}
+                data : { message : 'The book was removed'}
             })
         })
         .catch(function(err){
